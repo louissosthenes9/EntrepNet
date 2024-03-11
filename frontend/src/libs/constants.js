@@ -16,6 +16,7 @@ export const images = [
     },
     {
         name:"placeholder2",
+        pos:"col-start-2"
            
     },
     {
