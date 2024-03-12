@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button'
+import LinkBtn from './LinkBtn'
 
 export default function Hero() {
   return (
@@ -15,7 +16,7 @@ export default function Hero() {
        getting mentorship while expanding your <br />
        market and experience
     </div>
-   <Button text="Continue" />
+   <LinkBtn text = "Continue" href="/signin" />
 </div>
   )
 }
