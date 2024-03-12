@@ -1,37 +1,28 @@
-export const images = [
+export const imageSet1= [
     {
         name:"image1",
         src:"/genge.svg",
-        pos:"col-start-1"     
+        class:""     
     },
-    {
-        name:"placeholder1",
-           
-    },
+   
 
     {
         name:"image2",
         src:"/mfugaji.svg",
-        pos:"col-start-2"         
+        class:""         
     },
-    {
-        name:"placeholder2",
-        pos:"col-start-2"
-           
-    },
+]
+export const imageSet2 = [
     {
         name:"image3",
         src:"/mkulima.svg",  
-        pos:"col-start-1"       
+        class:""       
     },
 
-    {
-        name:"placeholder1",
-           
-    },
+   
     {
         name:"image4",
         src:"/cherehani.svg",
-        pos:"col-start-2" ,     
+        class:"" ,     
     },
 ]
