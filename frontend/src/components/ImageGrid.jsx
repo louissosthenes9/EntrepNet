@@ -20,7 +20,7 @@ export default function ImageGrid() {
         {imageSet2.map((imageObj) => (
           <Image
             key={imageObj.name}
-            className= {`${imageObj.class}`}
+            className= {`${imageObj.class}  m-12`}
             src={imageObj.src}
             width={150}
             height={150}

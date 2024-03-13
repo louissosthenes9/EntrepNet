@@ -1,6 +1,6 @@
 
-import ImageGrid from "@/components/ImageGrid";
-import MaxWidthWrapper from "@/components/MaxwidthWrapper";
+import ImageGrid from "../components/ImageGrid";
+import MaxWidthWrapper from "../components/MaxwidthWrapper";
 import React from "react";
 
 import Hero from "@/components/Hero";
