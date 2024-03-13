@@ -6,9 +6,9 @@ export default function page() {
   return (
     <> 
     <MaxWidthWrapper>
-      <div className="flex gap-x-48">
-       <SignUpForm />
-        <ImageGrid />
+      <div className="flex gap-x-72 ">
+        <SignUpForm/>
+        <ImageGrid  />
       </div>
     </MaxWidthWrapper>
     </>

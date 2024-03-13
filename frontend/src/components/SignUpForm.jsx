@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
 import Button from "./Button";
 import FormHeader from "./FormHeader"
+import IconsBar from "./IconsBar"
 
 export default function SignUpForm() {
   const formik = useFormik({
@@ -29,33 +30,45 @@ export default function SignUpForm() {
           onSubmit={formik.handleSubmit}
           className="flex flex-col gap-y-12 items-center justify-center"
         >
-        <FormHeader text={"Sign in to continue"}/>
-          <Input
+        <FormHeader className="mt-12" text={"Sign in to continue"}/>
+        <div>
+        <Input
             id="email"
             name="email"
             type="email"
-            placeholder="you@email.com"
+            placeholder="Email"
+            className="w-64"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
+            <span className="text-sm font-light text-red-500">{formik.errors.email}</span>
           ) : null}
+        </div>
+        
+          <div>
           <Input
             id="password"
             name="password"
             type="text"
             placeholder="password"
+            className="w-64"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div>{formik.errors.password}</div>
+          <div className="flex gap-x-4">  
+            {formik.touched.password && formik.errors.password ? (
+            <span className="text-sm font-light text-red-600">{formik.errors.password}</span>
           ) : null}
-
+            <a href="/forgot-password" className="text-[cyan] text-sm flex-end my-4">forgot password?</a>
+         </div>
+  
+          </div>
+          <IconsBar />
           <Button text={"sign in"} />
+          <div className="text-white">New here?<span className="text-[cyan]"><a href="/register">Register here</a></span></div>
         </form>
       </div>
     </>
