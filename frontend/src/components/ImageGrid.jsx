@@ -4,11 +4,12 @@ import Image from "next/image";
 export default function ImageGrid() {
   return (
     <>
-      <div className="grid grid-cols-2">
+    <div className=" relative">
+    <div className="grid grid-cols-2">
         {imageSet1.map((imageObj) => (
           <Image
             key={imageObj.name}
-            className= {`${imageObj.class}`}
+            className= {`${imageObj.class} `}
             src={imageObj.src}
             width={150}
             height={150}
@@ -16,11 +17,11 @@ export default function ImageGrid() {
           />
         ))}
       </div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 ">
         {imageSet2.map((imageObj) => (
           <Image
             key={imageObj.name}
-            className= {`${imageObj.class}`}
+            className= {`${imageObj.class} m-12`}
             src={imageObj.src}
             width={150}
             height={150}
@@ -28,6 +29,10 @@ export default function ImageGrid() {
           />
         ))}
       </div>
+   
+    </div>
+ 
+     
    
     </>
   );
