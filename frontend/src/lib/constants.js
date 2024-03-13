@@ -2,7 +2,7 @@ export const imageSet1= [
     {
         name:"image1",
         src:"/genge.svg",
-        class:""     
+        class:"col-start-2"     
     },
    
 
@@ -16,7 +16,7 @@ export const imageSet2 = [
     {
         name:"image3",
         src:"/mkulima.svg",  
-        class:""       
+        class:"col-start-2"       
     },
 
    
