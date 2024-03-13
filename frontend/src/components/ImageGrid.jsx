@@ -1,5 +1,5 @@
 import React from "react";
-import { imageSet1, imageSet2 } from "../libs/constants";
+import { imageSet1, imageSet2 } from "../lib/constants";
 import Image from "next/image";
 export default function ImageGrid() {
   return (
