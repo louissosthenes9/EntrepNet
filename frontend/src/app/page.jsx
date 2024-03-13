@@ -5,8 +5,7 @@ import React from "react";
 
 import Hero from "@/components/Hero";
 
-
-export default function () {
+export default function page() {
   return (
     <>
       <MaxWidthWrapper>
