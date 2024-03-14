@@ -16,8 +16,8 @@ export default function SignUpForm() {
     validationSchema: Yup.object({
       password: Yup.string()
         .min(8, "password should have atleast 8 characters")
-        .required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
+        .required("required"),
+      email: Yup.string().email("Invalid email address").required("required"),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
