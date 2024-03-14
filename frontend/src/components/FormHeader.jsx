@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function FormHeader({text}) {
+export default function FormHeader({text, style}) {
   return (
-    <div className="font-bold text-white">{text}</div>
+    <div className={`font-bold text-white ${style}`}>{text}</div>
   )
 }
