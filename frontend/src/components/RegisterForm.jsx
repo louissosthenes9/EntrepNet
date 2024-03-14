@@ -6,11 +6,12 @@ import { Input } from "@/components/ui/input";
 import Button from "./Button";
 import FormHeader from "./FormHeader";
 import IconsBar from "./IconsBar";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
-  {
-    /** form validation */
-  }
+ 
+  const router = useRouter()
+    {/** form validation */}
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -21,19 +22,26 @@ export default function RegisterForm() {
       email: "",
     },
     validationSchema: Yup.object({
-      firstname: Yup.string().required("Required"),
-      surname: Yup.string().required("Required"),
-      phone: Yup.string().min(8, "enter atleast eight digits"),
+      firstname: Yup.string().required("This field is required"),
+      surname: Yup.string().required("This field is required"),
+      phone: Yup.string().min(9,"invalid phone number").required("This field is required"),
       password: Yup.string()
         .min(8, "password should have atleast 8 characters")
-        .required("Required"),
+        .required("This field is required"),
       confirmpassword: Yup.string()
         .min(8, "password should have atleast 8 characters")
-        .required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
+        .required("This field is required").oneOf([Yup.ref('password'), null], 'Passwords must match'),
+      email: Yup.string().email("Invalid email address").required("This field is required"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      try { 
+          alert(JSON.stringify(values, null, 2));
+          router.push("/profile")
+       
+      } catch (error) {
+        alert(`the was an ${error} submitting the form`)
+      }
+     
     },
   });
 
