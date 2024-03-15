@@ -51,7 +51,16 @@ export default function ProfileForm() {
               name="qn1"
               id="qn1"
               className="border-b outline-none bg-inherit"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.qn1}
+              {...formik.getFieldProps("qn1")}
             />
+             {formik.touched.qn1 && formik.errors.qn1? (
+              <span className="text-sm font-light text-red-500">
+                {formik.errors.qn1}
+              </span>
+            ) : null}
           </div>
         </div>
         <div className="flex gap-x-2">
@@ -66,7 +75,21 @@ export default function ProfileForm() {
             </div>
           </div>
           <div>
-            <input type="text" name="qn2" id="qn2" className="border-b outline-none bg-inherit" />
+            <input 
+            type="text" 
+            name="qn2" 
+            id="qn2" 
+            className="border-b outline-none bg-inherit " 
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.qn2}
+            
+            />
+             {formik.touched.qn2 && formik.errors.qn2? (
+              <span className="text-sm font-light text-red-500">
+                {formik.errors.qn2}
+              </span>
+            ) : null}
           </div>
         </div>
           
