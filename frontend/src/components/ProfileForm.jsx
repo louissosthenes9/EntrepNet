@@ -94,7 +94,10 @@ export default function ProfileForm() {
         </div>
           
         <div className="flex gap-x-4">
-            <input type="checkbox" name="role" id="role" />
+            <select value={role}>
+              <option value="mentor">mentor</option>
+              <option value="enterpreneur">enterpreneur</option>
+            </select>
             <label htmlFor="role" className="font-bold text-lg text-white">I am an expert in my field and I want to become a 
 mentor.</label>
         </div>
