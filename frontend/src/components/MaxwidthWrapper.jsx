@@ -5,7 +5,7 @@ function MaxWidthWrapper({ children, className = "" }) {
   return (
   
     <div className={classes.join(" ")}>
-      <Header />
+      <Header fontSize={"text-4xl "}/>
       {children}
     </div>
   );
