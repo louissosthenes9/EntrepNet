@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useFormik } from "formik";
+import { Field, useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "./Button";
 import FormHeader from "./FormHeader";
@@ -16,11 +16,14 @@ export default function ProfileForm() {
     initialValues: {
       qn1: "",
       qn2: "",
-      topics: [],
+      topics:"",
+      role:""
     },
     validationSchema: Yup.object({
       qn1: Yup.string().required("This field is required"),
       qn2: Yup.string().required("This field is required"),
+      role: Yup.string().required("This field is required"),
+      topics:Yup.string().optional(),
     }),
     onSubmit: async (values) => {
       try {
@@ -54,7 +57,6 @@ export default function ProfileForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.qn1}
-              {...formik.getFieldProps("qn1")}
             />
              {formik.touched.qn1 && formik.errors.qn1? (
               <span className="text-sm font-light text-red-500">
@@ -94,7 +96,12 @@ export default function ProfileForm() {
         </div>
           
         <div className="flex gap-x-4">
-            <select value={role}>
+            <select
+             name="role" 
+             onChange={formik.handleChange}
+             onBlur={formik.handleBlur}
+            value={formik.values.role}
+            >
               <option value="mentor">mentor</option>
               <option value="enterpreneur">enterpreneur</option>
             </select>
