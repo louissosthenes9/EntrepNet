@@ -18,11 +18,18 @@ export const imageSet2 = [
         src:"/mkulima.svg",  
         class:"col-start-2"       
     },
-
    
     {
         name:"image4",
         src:"/cherehani.svg",
         class:"" ,     
     },
+]
+
+
+
+export const menuItems = [
+    {
+        
+    }
 ]

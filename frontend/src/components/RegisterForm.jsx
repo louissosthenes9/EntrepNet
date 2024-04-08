@@ -66,7 +66,7 @@ export default function RegisterForm() {
               value={formik.values.firstname}
             />
             {formik.touched.firstname && formik.errors.firstname ? (
-              <span className="text-sm font-light text-red-500">
+              <span className="text-sm font-light text-red-500 w-12">
                 {formik.errors.firstname}
               </span>
             ) : null}
