@@ -62,9 +62,9 @@ export default function SignUpForm() {
             {formik.touched.password && formik.errors.password ? (
             <span className="text-sm font-light text-red-600">{formik.errors.password}</span>
           ) : null}
-            <a href="/forgot-password" className="text-[cyan] text-sm flex-end my-4">forgot password?</a>
+    
          </div>
-  
+         <a href="/forgot-password" className="text-[cyan] text-sm flex-end my-4">forgot password?</a>
           </div>
           <IconsBar />
           <Button text={"sign in"} />
