@@ -14,20 +14,18 @@ export default function ProfileForm() {
   
   const formik = useFormik({
     initialValues: {
-      qn1: "",
-      qn2: "",
-      topics:"",
+      job: "",
+      location: "",
       role:""
     },
     validationSchema: Yup.object({
-      qn1: Yup.string().required("This field is required"),
-      qn2: Yup.string().required("This field is required"),
+      job: Yup.string().required("This field is required"),
+      location: Yup.string().required("This field is required"),
       role: Yup.string().required("This field is required"),
-      topics:Yup.string().optional(),
     }),
     onSubmit: async (values) => {
       try {
-        values.topics = TopicsTabs.getSelectedTopics();
+
         alert(JSON.stringify(values, null, 2));
         router.push("/home");
       } catch (error) {
@@ -45,22 +43,22 @@ export default function ProfileForm() {
               What is your main job?
             </div>
             <div className="font-light text-sm text-white text-nowrap">
-              A job to display on your profile{" "}
+              A job to display on your profile
             </div>
           </div>
           <div>
             <input
               type="text"
-              name="qn1"
-              id="qn1"
+              name="job"
+              id="job"
               className="border-b outline-none bg-inherit"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.qn1}
+              value={formik.values.job}
             />
-             {formik.touched.qn1 && formik.errors.qn1? (
+             {formik.touched.job && formik.errors.job? (
               <span className="text-sm font-light text-red-500">
-                {formik.errors.qn1}
+                {formik.errors.job}
               </span>
             ) : null}
           </div>
@@ -79,17 +77,17 @@ export default function ProfileForm() {
           <div>
             <input 
             type="text" 
-            name="qn2" 
-            id="qn2" 
+            name="location" 
+            id="location" 
             className="border-b outline-none bg-inherit " 
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.qn2}
+            value={formik.values.location}
             
             />
-             {formik.touched.qn2 && formik.errors.qn2? (
+             {formik.touched.location && formik.errors.location? (
               <span className="text-sm font-light text-red-500">
-                {formik.errors.qn2}
+                {formik.errors.location}
               </span>
             ) : null}
           </div>
@@ -97,10 +95,11 @@ export default function ProfileForm() {
           
         <div className="flex gap-x-4">
             <select
+             id="role"
              name="role" 
              onChange={formik.handleChange}
              onBlur={formik.handleBlur}
-            value={formik.values.role}
+             value={formik.values.role}
             >
               <option value="mentor">mentor</option>
               <option value="enterpreneur">enterpreneur</option>
