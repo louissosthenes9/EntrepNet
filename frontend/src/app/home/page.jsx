@@ -1,10 +1,14 @@
 import React from 'react'
 import Sidebar from '@/components/Sidebar'
+import FeedSection from '@/components/FeedSection'
+import RightBar from '@/components/RightBar'
 
 export default function page() {
   return (
-    <div className='h-full'>
+    <div className='h-full grid grid-cols-3'>
         <Sidebar />
+        <FeedSection/>
+        <RightBar />
     </div>
   )
 }
