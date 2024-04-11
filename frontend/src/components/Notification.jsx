@@ -12,7 +12,7 @@ import { BellIcon } from 'lucide-react';
 export default function Notification() {
   return (
       <Sheet>
-          <SheetTrigger><BellIcon className='text-white'/></SheetTrigger>
+          <SheetTrigger><BellIcon className='text-white text-3xl'/></SheetTrigger>
           <SheetContent className="bg-[#15264B]">
                <SheetHeader>
                   <SheetTitle className="text-white text-center">Notifications</SheetTitle>
