@@ -20,15 +20,37 @@ import { Separator } from "./ui/separator";
 import { useState } from "react";
 
 export default function PostModal() {
-  const [FormData, setFormData] = useState({
+  const [file, setFile] = useState(null);
+  const [formData, setFormData] = useState({
     post: "",
-    ImageUrl: "",
+    ImageUrl: "" | null,
   });
+
+  
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
+  if (name === "Image" && files.length > 0) {
+    setFile(files[0]);
+  } else {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+  }
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    if (file) {
+      console.log("Uploading file...");
+  
+      const formData = new FormData();''
+      formData.append("Image", file);
+  
+
+    } else {
+      alert("Please select a file.");
+    }
+  };
+  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -44,12 +66,12 @@ export default function PostModal() {
           </DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <form onClick={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Textarea
             name="post"
             id="post"
             onChange={handleChange}
-            value={FormData.post}
+            value={formData.post}
             placeholder="Type your thoughts here..."
             className="h-[250px] placeholder:text-gray-50 placeholder:text-sm bg-inherit border-none outline-none text-white"
           />
@@ -58,19 +80,25 @@ export default function PostModal() {
           <DialogFooter>
             <div className="mt-4 flex gap-x-12">
               <div className="flex-start">
-                 <div className="grid w-full max-w-sm items-center gap-1.5">
-                   <Label htmlFor="imageUrl">
-                   <div><BiSolidImageAlt className="text-white text-3xl" /><div className="text-xm text-white">Add photo</div></div>
+                <div className="grid w-full max-w-sm items-center gap-1.5">
+                  <Label>
+                    <div>
+                      <BiSolidImageAlt className="text-white text-3xl" />
+                      <div className="text-xm text-white">Add photo</div>
+                    </div>
+                    <Input
+                      id="Image"
+                      name="Image"
+                      type="file"
+                      className="hidden"
+                      onChange={handleChange}
+                    />
                   </Label>
-                  <Input id="ImageUrl" type="file" className="hidden"/>
+                </div>
               </div>
               <div>
-                
-              </div>
-              </div>
-              <div>
-                   <ImLocation className="text-white text-2xl"/>
-                    <div className="text-nowrap text-white text-xs">Tag location</div>
+                <ImLocation className="text-white text-2xl" />
+                <div className="text-nowrap text-white text-xs">Tag location</div>
               </div>
 
               <Button type="submit">
