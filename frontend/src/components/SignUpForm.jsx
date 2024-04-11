@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import Button from "./Button";
 import FormHeader from "./FormHeader"
 import IconsBar from "./IconsBar"
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -21,6 +23,7 @@ export default function SignUpForm() {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      router.push("/home")
     },
   });
   return (
