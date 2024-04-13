@@ -28,8 +28,23 @@ export const imageSet2 = [
 
 
 
-export const menuItems = [
+export const Followings = [
     {
-        
+        name:"Jane Baker",
+        job:"Cake baker",
+        role:"Mentor",
+        src:"/profile.svg"
+    },
+    {
+        name:"Jane John",
+        job:"Cake baker",
+        role:"Enterpreneur",
+        src:"/profile.svg"
+    },
+    {
+        name:"John Baker",
+        job:"Cake baker",
+        role:"Mentor",
+        src:"/profile.svg"
     }
 ]
