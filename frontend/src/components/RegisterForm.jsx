@@ -9,7 +9,7 @@ import IconsBar from "./IconsBar";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
- 
+
   const router = useRouter()
     {/** form validation */}
   const formik = useFormik({
@@ -34,8 +34,10 @@ export default function RegisterForm() {
       email: Yup.string().email("Invalid email address").required("This field is required"),
     }),
     onSubmit: (values) => {
+     
       try { 
-          alert(JSON.stringify(values, null, 2));
+          const { confirmpassword, ...formData } = values;
+          alert(JSON.stringify(formData, null, 2));
           router.push("/profile")
        
       } catch (error) {
