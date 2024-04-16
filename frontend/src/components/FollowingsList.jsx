@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function FollowingsList() {
     const [isFollowing,setIsFollowing]= useState(true)
   return (
-    <div className="grid gap-y-6 mt-12">
+    <div className="grid gap-y-6 mt-12 px-4">
       {Followings.map((following) => (
         <div 
         className="flex justify-evenly flex-shrink gap-x-2 items-center h-full"
@@ -15,8 +15,8 @@ export default function FollowingsList() {
        <div>
         <Image
          src={following.src}
-         width={24}
-         height={24}
+         width={32}
+         height={32}
          alt="profile"
          />
        </div>
