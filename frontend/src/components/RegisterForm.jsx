@@ -8,7 +8,7 @@ import FormHeader from "./FormHeader";
 import IconsBar from "./IconsBar";
 import { useRouter } from "next/navigation";
 
-export default function RegisterForm() {
+export default function RegisterForm({ onNext }) {
 
   const router = useRouter()
     {/** form validation */}
@@ -38,8 +38,7 @@ export default function RegisterForm() {
       try { 
           const { confirmpassword, ...formData } = values;
           alert(JSON.stringify(formData, null, 2));
-          router.push("/profile")
-       
+          onNext(formData)    
       } catch (error) {
         alert(`the was an ${error} submitting the form`)
       }
