@@ -4,14 +4,15 @@ import { Field, useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "./Button";
 import FormHeader from "./FormHeader";
-
 import { useRouter } from "next/navigation";
 import TopicsTabs from "./TopicsTabs";
 
-export default function ProfileForm() {
- 
+export default function ProfileForm( formData,onPrev) {
+  const deepMergeObjects = (...objects) => {
+    const deepCopyObjects = objects.map(object => JSON.parse(JSON.stringify(object)));
+    return deepCopyObjects.reduce((merged, current) => ({ ...merged, ...current }), {});
+  }
   const router = useRouter();
-  
   const formik = useFormik({
     initialValues: {
       job: "",
@@ -25,8 +26,8 @@ export default function ProfileForm() {
     }),
     onSubmit: async (values) => {
       try {
-
-        alert(JSON.stringify(values, null, 2));
+        const data = deepMergeObjects(formData,values);
+        alert(JSON.stringify(data, null, 2));
         router.push("/home");
       } catch (error) {
         alert(`the was an ${error} submitting the form`);
