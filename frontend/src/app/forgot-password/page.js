@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/Button";
 import FormHeader from "@/components/FormHeader"
+import { Toaster, toast } from 'sonner'
 
 
 export default function page() {
@@ -17,6 +18,7 @@ export default function page() {
       email: Yup.string().email("Invalid email address").required("required"),
     }),
     onSubmit: (values) => {
+       toast.success(`we have sent an email to ${values.email}`)
       alert(JSON.stringify(values, null, 2));
     },
   });
