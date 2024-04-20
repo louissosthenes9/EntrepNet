@@ -64,7 +64,7 @@ export default function PostModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="text-white flex gap-x-4">
+        <div className="text-white flex gap-x-4  hover:rounded-lg hover:bg-teal-50 hover:text-black hover:p-4 transition-all ease">
           <Pencil />
           <div>Create post</div>
         </div>
