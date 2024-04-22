@@ -44,7 +44,12 @@ export default function PostModal() {
 
     const postData = new FormData();
     postData.append("post", formData.post);
+
+    
     if (files) {
+      if(files.length>3){
+        return;
+      }
       for (let index = 0; index <files.length; index++) {
         postData.append(`file${index+1}`,files[index]);    
       }
