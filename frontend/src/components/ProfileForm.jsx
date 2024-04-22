@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import TopicsTabs from "./TopicsTabs";
 
 export default function ProfileForm( formData,onPrev) {
+  const { email , ...extractedData}= formData
   const deepMergeObjects = (...objects) => {
     const deepCopyObjects = objects.map(object => JSON.parse(JSON.stringify(object)));
     return deepCopyObjects.reduce((merged, current) => ({ ...merged, ...current }), {});
@@ -26,7 +27,8 @@ export default function ProfileForm( formData,onPrev) {
     }),
     onSubmit: async (values) => {
       try {
-        const data = deepMergeObjects(formData,values);
+        console.log(email)
+        const data = deepMergeObjects(email,values);
         alert(JSON.stringify(data, null, 2));
         router.push("/home");
       } catch (error) {
