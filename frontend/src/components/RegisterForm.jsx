@@ -7,6 +7,9 @@ import Button from "./Button";
 import FormHeader from "./FormHeader";
 import IconsBar from "./IconsBar";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "sonner";
+import { ifError } from "assert";
 
 export default function RegisterForm({ onNext }) {
 
@@ -33,12 +36,20 @@ export default function RegisterForm({ onNext }) {
         .required("This field is required").oneOf([Yup.ref('password'), null], 'Passwords must match'),
       email: Yup.string().email("Invalid email address").required("This field is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
      
       try { 
           const { confirmpassword, ...formData } = values;
-          alert(JSON.stringify(formData, null, 2));
-          onNext(formData)    
+         // let res = await axios.post('localhost:8080/api/vi/user/register', formData)
+           
+        //  if(res.status==400){
+        //    toast.error("the email is already taken")
+        //  }else if(res.status==500){
+         //   toast.error("something went wrong please try again letter")
+         // }
+         alert(JSON.stringify(formData, null, 2));
+
+          onNext(formData) 
       } catch (error) {
         alert(`the was an ${error} submitting the form`)
       }
