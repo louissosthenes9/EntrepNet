@@ -9,7 +9,7 @@ import IconsBar from "./IconsBar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
-import { ifError } from "assert";
+
 
 export default function RegisterForm({ onNext }) {
 
