@@ -6,6 +6,8 @@ import Button from "./Button";
 import FormHeader from "./FormHeader";
 import { useRouter } from "next/navigation";
 import TopicsTabs from "./TopicsTabs";
+import { stringify } from "querystring";
+import { toast } from "sonner";
 
 export default function ProfileForm( {formData}) {
   const { email}= formData
@@ -26,7 +28,9 @@ export default function ProfileForm( {formData}) {
         
         values['email'] = email
         console.log(values)
-       // router.push("/home");
+
+        toast.success("you have successfully logged in ")
+        router.push("/home");
       } catch (error) {
         alert(`the was an ${error} submitting the form`);
       }
@@ -103,11 +107,10 @@ export default function ProfileForm( {formData}) {
               <option value="mentor">mentor</option>
               <option value="enterpreneur">enterpreneur</option>
             </select>
-            <label htmlFor="role" className="font-bold text-lg text-white">I am an expert in my field and I want to become a 
-mentor.</label>
+            <label htmlFor="role" className="font-bold text-lg text-white">Role</label>
         </div>
-
-        <TopicsTabs />
+         {/** <TopicsTabs /> ***/}
+        
         <Button text={"continue"} />  
       </form>
     </div>
