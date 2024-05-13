@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Field, useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "./Button";
 import FormHeader from "./FormHeader";
 import { useRouter } from "next/navigation";
 import TopicsTabs from "./TopicsTabs";
-import { stringify } from "querystring";
 import { toast } from "sonner";
 
 export default function ProfileForm( {formData}) {
@@ -16,12 +15,13 @@ export default function ProfileForm( {formData}) {
     initialValues: {
       job: "",
       location: "",
-      role:""
+      role:"",
+      topic:""
     },
     validationSchema: Yup.object({
       job: Yup.string().required("This field is required"),
       location: Yup.string().required("This field is required"),
-      role: Yup.string().required("This field is required"),
+      role: Yup.string().required("This field is required")
     }),
     onSubmit: async (values) => {
       try {
@@ -36,6 +36,13 @@ export default function ProfileForm( {formData}) {
       }
     },
   });
+
+  //state to toggle topics according to role 
+  const [isMentor,setIsMentor] = useState(false)
+  const Regions = ["Mwanza","Dar es Salaam","Iringa","Mbeya", "Tanga","Arusha","Ruvuma","Morogoro","Lindi","Mtwara","Pwani","Katavi","Dodoma",]
+  const showTopics = ()=>{
+    setIsMentor(!isMentor)
+  }
   return (
     <div>
       <FormHeader text="Complete your profile" style="text-center mt-8 mb-12" />
@@ -66,7 +73,7 @@ export default function ProfileForm( {formData}) {
             ) : null}
           </div>
         </div>
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-6">
           <div className="grid grid-cols-1">
             <div className="font-bold text-white text-lg text-nowrap">
               Where are you located?
@@ -78,16 +85,28 @@ export default function ProfileForm( {formData}) {
             </div>
           </div>
           <div>
-            <input 
-            type="text" 
-            name="location" 
-            id="location" 
-            className="border-b outline-none bg-inherit " 
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.location}
-            
-            />
+            <select 
+                name="location" 
+                id="location" 
+                className="border-b outline-none bg-white w-full " 
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.location}
+            >
+             
+              {/* Display regions as select options */}
+              {Regions.map(
+                (region,index)=>(
+                  <option 
+                  className=""
+                  key={index}
+                  value={region}
+                  >
+                    {region}
+                  </option>
+                )
+              )}
+            </select>
              {formik.touched.location && formik.errors.location? (
               <span className="text-sm font-light text-red-500">
                 {formik.errors.location}
@@ -97,7 +116,7 @@ export default function ProfileForm( {formData}) {
         </div>
           
         <div className="flex gap-x-4">
-            <select
+            {/* <select
              id="role"
              name="role" 
              onChange={formik.handleChange}
@@ -106,11 +125,47 @@ export default function ProfileForm( {formData}) {
             >
               <option value="mentor">mentor</option>
               <option value="enterpreneur">enterpreneur</option>
-            </select>
+            </select> 
+
             <label htmlFor="role" className="font-bold text-lg text-white">Role</label>
+           */}
+
+           {/* Radio buttons to toggle topics according to roles */}
+
+          
+          <input 
+          type="checkbox" 
+          name="role"         
+          id="role"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={isMentor?"Mentor":"Entrepeneur"}
+
+          onClick={showTopics}
+           />
+           <label htmlFor="role" className="text-white">Yes, I am mentor and I would like to coach on:</label>
         </div>
-         {/** <TopicsTabs /> ***/}
-        
+          {
+            isMentor?
+            (
+            <select
+            name="topic" 
+            id="topic" 
+            className="border-b outline-none bg-white w-full " 
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.topic}  
+            >
+               <option className="text-center" value="Agriculture">Agriculture</option>
+               <option className="text-center" value="Bakery">Bakery</option>
+               <option className="text-center" value="Fishery">Fishery</option>
+               <option className="text-center" value="Forex">Forex</option>
+               <option className="text-center" value="Beekeeping">Beekeeping</option>
+               <option className="text-center" value="Textile production">Textile production</option>
+               <option className="text-center" value="Soap Making">Soap Making</option>
+            </select>):
+            (null)
+          }       
         <Button text={"continue"} />  
       </form>
     </div>
