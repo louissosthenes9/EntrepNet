@@ -16,7 +16,7 @@ export default function ProfileForm( {formData}) {
       job: "",
       location: "",
       role:"",
-      topic:""
+      topic:"",
     },
     validationSchema: Yup.object({
       job: Yup.string().required("This field is required"),
@@ -25,7 +25,7 @@ export default function ProfileForm( {formData}) {
     }),
     onSubmit: async (values) => {
       try {
-        
+      
         values['email'] = email
         console.log(values)
 
@@ -61,7 +61,7 @@ export default function ProfileForm( {formData}) {
               type="text"
               name="job"
               id="job"
-              className="border-b outline-none bg-inherit"
+              className="border-b outline-none bg-white text-black"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.job}
@@ -95,6 +95,14 @@ export default function ProfileForm( {formData}) {
             >
              
               {/* Display regions as select options */}
+              <option 
+                  className=""
+                  value=''
+                  selected
+                  disabled
+                  >
+                    
+                  </option>
               {Regions.map(
                 (region,index)=>(
                   <option 
@@ -115,35 +123,24 @@ export default function ProfileForm( {formData}) {
           </div>
         </div>
           
-        <div className="flex gap-x-4">
-            {/* <select
-             id="role"
-             name="role" 
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.role}
-            >
-              <option value="mentor">mentor</option>
-              <option value="enterpreneur">enterpreneur</option>
-            </select> 
-
-            <label htmlFor="role" className="font-bold text-lg text-white">Role</label>
-           */}
-
-           {/* Radio buttons to toggle topics according to roles */}
-
-          
+        <div className="flex gap-x-4">         
           <input 
-          type="checkbox" 
+          type="radio" 
           name="role"         
           id="role"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={isMentor?"Mentor":"Entrepeneur"}
+          value={isMentor ? "Mentor": "Entrepeneur"}
 
           onClick={showTopics}
            />
            <label htmlFor="role" className="text-white">Yes, I am mentor and I would like to coach on:</label>
+
+           {formik.touched.role && formik.errors.role? (
+              <span className="text-sm font-light text-red-500">
+                {formik.errors.role}
+              </span>
+            ) : null}
         </div>
           {
             isMentor?
@@ -156,18 +153,24 @@ export default function ProfileForm( {formData}) {
             onBlur={formik.handleBlur}
             value={formik.values.topic}  
             >
-               <option className="text-center" value="Agriculture">Agriculture</option>
-               <option className="text-center" value="Bakery">Bakery</option>
-               <option className="text-center" value="Fishery">Fishery</option>
-               <option className="text-center" value="Forex">Forex</option>
-               <option className="text-center" value="Beekeeping">Beekeeping</option>
-               <option className="text-center" value="Textile production">Textile production</option>
-               <option className="text-center" value="Soap Making">Soap Making</option>
+               <option  value="Agriculture">Agriculture</option>
+               <option  value="Bakery">Bakery</option>
+               <option  value="Fishery">Fishery</option>
+               <option  value="Forex">Forex</option>
+               <option  value="Beekeeping">Beekeeping</option>
+               <option  value="Textile production">Textile production</option>
+               <option  value="Soap Making">Soap Making</option>
             </select>):
             (null)
-          }       
-        <Button text={"continue"} />  
-      </form>
+          }  
+          
+          {formik.touched.topic && formik.errors.topic? (
+              <span className="text-sm font-light text-red-500">
+                {formik.errors.topic}
+              </span>
+            ) : null}     1
+        <Button type="submit" aria-label="continue" text={'continue'} />
+        </form>
     </div>
   );
 }
