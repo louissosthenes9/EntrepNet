@@ -5,11 +5,10 @@ import RightBar from '@/components/RightBar'
 
 export default function page() {
   return (
-    <div className='h-full grid grid-cols-3 gap-64'>
+    <div className='h-full flex justify-between'>
         <Sidebar /> 
         <FeedSection/>
-        <RightBar />
-        
+        <RightBar /> 
     </div>
   )
 }
