@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -32,6 +33,8 @@ export default function PostModal() {
     });
   };
 
+
+  //handle file uploads
   const handleUpload = (event) => {
     const selectedFile = event.target.files;
     if (selectedFile) {
@@ -39,21 +42,24 @@ export default function PostModal() {
     }
   };
 
+  //Submit function
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const postData = new FormData();
     postData.append("post", formData.post);
 
-    
+    //Check if a user has exceededd upload limit
     if (files) {
-      if(files.length>3){
+      if (files.length > 3) {
+        alert(`you have uploaded ${files.length} files.  \n upload limit is 3`)
+        toast.error("You have exceeded upload limit")
         return;
       }
-      for (let index = 0; index <files.length; index++) {
-        postData.append(`file${index+1}`,files[index]);    
+      for (let index = 0; index < files.length; index++) {
+        postData.append(`file${index + 1}`, files[index]);
       }
-      
+
     }
 
     try {
@@ -104,7 +110,7 @@ export default function PostModal() {
                       id="files"
                       name="files"
                       type="file"
-                      className="hidden"
+                      // className="hidden"
                       onChange={handleUpload}
                       multiple
                     />
@@ -116,11 +122,18 @@ export default function PostModal() {
                 <div className="text-nowrap text-white text-xs">Tag location</div>
               </div>
 
-              <Button type="submit">
-                <div className="flex gap-2 items-center">
-                  Post <GoPaperAirplane className="text-white text-2xl" />
-                </div>
-              </Button>
+              {/* close dialog as soon as the user has submitted the form */}
+              <div>
+                <DialogClose>
+                  <Button type="submit">
+                    <div className="flex gap-2 items-center">
+                      Post <GoPaperAirplane className="text-white text-2xl" />
+                    </div>
+                  </Button>
+                </DialogClose>
+              </div>
+
+
             </div>
           </DialogFooter>
         </form>
