@@ -134,7 +134,7 @@ export default function ProfileForm( {formData}) {
 
           onClick={showTopics}
            />
-           <label htmlFor="role" className="text-white">Yes, I am mentor and I would like to coach on:</label>
+           <label htmlFor="role" className="text-white">Are you a mentor?Would you like to coach on:</label>
 
            {formik.touched.role && formik.errors.role? (
               <span className="text-sm font-light text-red-500">
