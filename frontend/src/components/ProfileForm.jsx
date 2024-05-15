@@ -9,6 +9,7 @@ import TopicsTabs from "./TopicsTabs";
 import { toast } from "sonner";
 
 export default function ProfileForm( {formData}) {
+
   const { email}= formData
   const router = useRouter();
   const formik = useFormik({
@@ -130,11 +131,32 @@ export default function ProfileForm( {formData}) {
           id="role"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={isMentor ? "Mentor": "Entrepeneur"}
+          value="Mentor"
 
           onClick={showTopics}
            />
            <label htmlFor="role" className="text-white">Are you a mentor?Would you like to coach on:</label>
+
+           {formik.touched.role && formik.errors.role? (
+              <span className="text-sm font-light text-red-500">
+                {formik.errors.role}
+              </span>
+            ) : null}
+        </div>
+
+        {/* New radio */}
+        <div className="flex gap-x-4">         
+          <input 
+          type="radio" 
+          name="role"         
+          id="role"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value="Entepreneur"
+
+          onClick={showTopics}
+           />
+           <label htmlFor="role" className="text-white">Are you an Enterpreneur? Choose your interest:</label>
 
            {formik.touched.role && formik.errors.role? (
               <span className="text-sm font-light text-red-500">
