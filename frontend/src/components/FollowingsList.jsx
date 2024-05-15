@@ -15,14 +15,14 @@ export default function FollowingsList() {
        <div>
         <Image
          src={following.src}
-         width={32}
-         height={32}
+         width={64}
+         height={64}
          alt="profile"
          />
        </div>
         
         <div className="grid grid-cols-1">
-            <div className="text-white text-sm">{following.name}</div>
+            <div className="text-white text-sm text-nowrap">{following.name}</div>
             <div className="flex space-x-1 items-center text-white">
               <div className="text-xs">{following.role}</div>
               <div className="text-white">|</div>
