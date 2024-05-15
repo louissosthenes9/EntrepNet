@@ -8,16 +8,16 @@ import { useRouter } from "next/navigation";
 import TopicsTabs from "./TopicsTabs";
 import { toast } from "sonner";
 
-export default function ProfileForm( {formData}) {
+export default function ProfileForm({ formData }) {
 
-  const { email}= formData
+  const { email } = formData
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
       job: "",
       location: "",
-      role:"",
-      topic:"",
+      role: "",
+      topic: "",
     },
     validationSchema: Yup.object({
       job: Yup.string().required("This field is required"),
@@ -26,7 +26,7 @@ export default function ProfileForm( {formData}) {
     }),
     onSubmit: async (values) => {
       try {
-      
+
         values['email'] = email
         console.log(values)
 
@@ -39,16 +39,16 @@ export default function ProfileForm( {formData}) {
   });
 
   //state to toggle topics according to role 
-  const [isMentor,setIsMentor] = useState(false)
-  const Regions = ["Mwanza","Dar es Salaam","Iringa","Mbeya", "Tanga","Arusha","Ruvuma","Morogoro","Lindi","Mtwara","Pwani","Katavi","Dodoma",]
-  const showTopics = ()=>{
+  const [isMentor, setIsMentor] = useState(false)
+  const Regions = ["Mwanza", "Dar es Salaam", "Iringa", "Mbeya", "Tanga", "Arusha", "Ruvuma", "Morogoro", "Lindi", "Mtwara", "Pwani", "Katavi", "Dodoma",]
+  const showTopics = () => {
     setIsMentor(!isMentor)
   }
   return (
     <div>
       <FormHeader text="Complete your profile" style="text-center mt-8 mb-12" />
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-y-12">
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-6">
           <div className="grid grid-cols-1">
             <div className="font-bold text-white text-lg text-nowrap">
               What is your main job?
@@ -67,7 +67,7 @@ export default function ProfileForm( {formData}) {
               onBlur={formik.handleBlur}
               value={formik.values.job}
             />
-             {formik.touched.job && formik.errors.job? (
+            {formik.touched.job && formik.errors.job ? (
               <span className="text-sm font-light text-red-500">
                 {formik.errors.job}
               </span>
@@ -86,113 +86,113 @@ export default function ProfileForm( {formData}) {
             </div>
           </div>
           <div>
-            <select 
-                name="location" 
-                id="location" 
-                className="border-b outline-none bg-white w-full " 
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.location}
+            <select
+              name="location"
+              id="location"
+              className="border-b outline-none bg-white w-full "
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.location}
             >
-             
+
               {/* Display regions as select options */}
-              <option 
-                  className=""
-                  value=''
-                  selected
-                  disabled
-                  >
-                    
-                  </option>
+              <option
+                className=""
+                value=''
+                selected
+                disabled
+              >
+
+              </option>
               {Regions.map(
-                (region,index)=>(
-                  <option 
-                  className=""
-                  key={index}
-                  value={region}
+                (region, index) => (
+                  <option
+                    className=""
+                    key={index}
+                    value={region}
                   >
                     {region}
                   </option>
                 )
               )}
             </select>
-             {formik.touched.location && formik.errors.location? (
+            {formik.touched.location && formik.errors.location ? (
               <span className="text-sm font-light text-red-500">
                 {formik.errors.location}
               </span>
             ) : null}
           </div>
         </div>
-          
-        <div className="flex gap-x-4">         
-          <input 
-          type="radio" 
-          name="role"         
-          id="role"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value="Mentor"
 
-          onClick={showTopics}
-           />
-           <label htmlFor="role" className="text-white">Are you a mentor?Would you like to coach on:</label>
+        <div className="flex gap-x-4">
+          <input
+            type="radio"
+            name="role"
+            id="role"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value="Mentor"
 
-           {formik.touched.role && formik.errors.role? (
-              <span className="text-sm font-light text-red-500">
-                {formik.errors.role}
-              </span>
-            ) : null}
+            onClick={showTopics}
+          />
+          <label htmlFor="role" className="text-white">Are you a mentor?Would you like to coach on:</label>
+
+          {formik.touched.role && formik.errors.role ? (
+            <span className="text-sm font-light text-red-500">
+              {formik.errors.role}
+            </span>
+          ) : null}
         </div>
 
         {/* New radio */}
-        <div className="flex gap-x-4">         
-          <input 
-          type="radio" 
-          name="role"         
-          id="role"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value="Entepreneur"
-
-          onClick={showTopics}
-           />
-           <label htmlFor="role" className="text-white">Are you an Enterpreneur? Choose your interest:</label>
-
-           {formik.touched.role && formik.errors.role? (
-              <span className="text-sm font-light text-red-500">
-                {formik.errors.role}
-              </span>
-            ) : null}
-        </div>
-          {
-            isMentor?
-            (
-            <select
-            name="topic" 
-            id="topic" 
-            className="border-b outline-none bg-white w-full " 
+        <div className="flex gap-x-4">
+          <input
+            type="radio"
+            name="role"
+            id="role"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.topic}  
-            >
-               <option  value="Agriculture">Agriculture</option>
-               <option  value="Bakery">Bakery</option>
-               <option  value="Fishery">Fishery</option>
-               <option  value="Forex">Forex</option>
-               <option  value="Beekeeping">Beekeeping</option>
-               <option  value="Textile production">Textile production</option>
-               <option  value="Soap Making">Soap Making</option>
-            </select>):
+            value="Entepreneur"
+
+            onClick={showTopics}
+          />
+          <label htmlFor="role" className="text-white">Are you an Enterpreneur? Choose your interest:</label>
+
+          {formik.touched.role && formik.errors.role ? (
+            <span className="text-sm font-light text-red-500">
+              {formik.errors.role}
+            </span>
+          ) : null}
+        </div>
+        {
+          isMentor ?
+            (
+              <select
+                name="topic"
+                id="topic"
+                className="border-b outline-none bg-white w-full "
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.topic}
+              >
+                <option value="Agriculture">Agriculture</option>
+                <option value="Bakery">Bakery</option>
+                <option value="Fishery">Fishery</option>
+                <option value="Forex">Forex</option>
+                <option value="Beekeeping">Beekeeping</option>
+                <option value="Textile production">Textile production</option>
+                <option value="Soap Making">Soap Making</option>
+              </select>) :
             (null)
-          }  
-          
-          {formik.touched.topic && formik.errors.topic? (
-              <span className="text-sm font-light text-red-500">
-                {formik.errors.topic}
-              </span>
-            ) : null}     1
+        }
+
+        {formik.touched.topic && formik.errors.topic ? (
+          <span className="text-sm font-light text-red-500">
+            {formik.errors.topic}
+          </span>
+        ) : null}     1
         <Button type="submit" aria-label="continue" text={'continue'} />
-        </form>
+      </form>
     </div>
   );
 }
