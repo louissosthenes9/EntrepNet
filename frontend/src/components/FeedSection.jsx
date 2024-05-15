@@ -9,7 +9,7 @@ export default function FeedSection() {
           PostsList.map((following, index) => (
 
             // Display the list of hardCorded tweets
-            <div>
+            <div key={index}>
 
             {/* This is for the user and the profile */}
               <div
