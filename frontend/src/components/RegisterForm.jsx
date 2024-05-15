@@ -14,7 +14,9 @@ import { toast } from "sonner";
 export default function RegisterForm({ onNext }) {
 
   const router = useRouter()
+
     {/** form validation */}
+    
   const formik = useFormik({
     initialValues: {
       firstname: "",
