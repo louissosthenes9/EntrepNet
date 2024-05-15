@@ -21,7 +21,7 @@ export default function ProfileForm( {formData}) {
     validationSchema: Yup.object({
       job: Yup.string().required("This field is required"),
       location: Yup.string().required("This field is required"),
-      role: Yup.string().required("This field is required")
+      role: Yup.string().optional()
     }),
     onSubmit: async (values) => {
       try {
